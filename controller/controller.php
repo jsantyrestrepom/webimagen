@@ -14,29 +14,28 @@
 		$usuario = $_SESSION['user'];
         if (isset($_POST['bttn_logout'])) {
             session_destroy();
-            header ("Location: ../view/login.html");
+            header ("Location: ../view/login.html");exit();
         } else if ( isset($_POST['bttn_upload']) ) {
             if ((($_FILES['upload_photo']['type'] == "image/gif") || ($_FILES['upload_photo']['type'] == "image/jpeg") || ($_FILES['upload_photo']['type'] == "image/png") || ($_FILES['upload_photo']['type'] == "image/pjpeg")) && ($_FILES['upload_photo']['type'] < 20000)) {
                 $username = $_SESSION['user']->getNombre();
                 $id_user = $_SESSION['user']->getId();
                 $tmp = $_FILES['upload_photo']['tmp_name'];
                 $extension = end(explode(".", $_FILES['upload_photo']['name']));
-                $date_imagen = time();                
-                $path = $_SERVER['DOCUMENT_ROOT'] . "/photos/$username/img-$date_imagen.$extension";
-               // echo "$tmp <br/> $path";
-                
+                $date_imagen = time();
+                $new_name_imagen = "img-$date_imagen";
+                $path = $_SERVER['DOCUMENT_ROOT'] . "/photos/$username/$new_name_imagen.$extension";
                 if( move_uploaded_file($tmp, $path) ) {
                     $query = "
                         INSERT INTO tbl_imagen
                         (cod_imagen,id_user,name_imagen,date_imagen)
                         VALUES
-                        (SEQ_tbl_imagenCod,$id_user,'$generatename',$date_imagen)
-                    "; //echo $query; exit();
-                    $this->bd->query ( $query );
+                        (nextval('seq_tbl_imagen_cod'),$id_user,'$new_name_imagen',$date_imagen)
+                    ";
+                    $db->query ( $query );
                 }
-            }exit();
+            }//exit();
         }        
-        header ("Location: ../view/photos.html");        
+        header ("Location: ../view/photos.html");//exit();    
 	} else {
 		if ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) ) {
 			$username = $_POST['username'];
