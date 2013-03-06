@@ -1,5 +1,5 @@
 <?php
-	//echo md5('jsrm');
+	
 	
 	require_once ('../model/class/BaseDatos_postgresql.php');
 	require_once ('../model/class/Usuario.php');
@@ -14,7 +14,8 @@
 		$usuario = $_SESSION['user'];
         if (isset($_POST['bttn_logout'])) {
             session_destroy();
-            header ("Location: ../view/login.html");exit();
+            header ("Location: ../view/login.php");
+            exit();
         } else if ( isset($_POST['bttn_upload']) ) {
             if ((($_FILES['upload_photo']['type'] == "image/gif") || ($_FILES['upload_photo']['type'] == "image/jpeg") || ($_FILES['upload_photo']['type'] == "image/png") || ($_FILES['upload_photo']['type'] == "image/pjpeg")) && ($_FILES['upload_photo']['type'] < 20000)) {
                 $username = $_SESSION['user']->getNombre();
@@ -35,42 +36,17 @@
                 }
             }//exit();
         }        
-        header ("Location: ../view/photos.html");//exit();    
+        header ("Location: ../view/startPage.php");
+        exit();    
 	} else {
 		if ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) ) {
 			$username = $_POST['username'];
-			$password = md5($_POST['password']);
-			$query = "
-					SELECT 
-					 	id_user,username_user
-					FROM
-						tbl_user
-					WHERE
-						username_user='$username'
-					AND
-						password_user='$password'
-					LIMIT 1	
-				";
-			$db->query( $query );
-			if ( $db->numRows() > 0 ) {
-				$datos = $db->fetchArray();
-				session_cache_expire(1800);			
-				$sessionId = session_id();
-				$ip = $_SERVER["REMOTE_ADDR"];
-				$usuario->setNombre( $datos['username_user'] );
-				$usuario->setCodigo( $datos['id_user'] );
-				$usuario->setSession( $sessionId );
-				$usuario->setIp( $ip );			
-							
-				$_SESSION['user'] = $usuario;
-				header ("Location: ../view/photos.html");
-			} else {
-				header ("Location: ../view/login.html?");
-				echo "Usuario y/o Contrase&ntilde;a invalidos";
-			}
-		} else {
-			header ("Location: ../view/login.html");
-		}
+			$password = md5( $_POST['password'] );
+            header("Location: ../model/model.php?usr=$username&pwd=$password" );
+            exit();
+        }
+        header ("Location: ../view/login.php");
+        exit();
 	}
 	
 ?>
