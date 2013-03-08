@@ -50,7 +50,7 @@
             <input class="btn btn-mini" type="submit" id="bttn_logout" name="bttn_logout" value="Logout" />
         </form></div>
         </div>
-        
+        <hr />
         <div class="container" >
         
             <div id="upload_photos" >
@@ -60,7 +60,7 @@
                 <input class="input-xxlarge" type="file" name="upload_photo" id="upload_photo" required />
                 <input class="btn btn-large btn-primary" type="submit" name="bttn_upload" value="UPLOAD" />
             </form></div>
-            
+            <hr />
             <div class="gallery container" id="gallery" ></div>
         
         </div>
