@@ -28,9 +28,9 @@
                 if( move_uploaded_file($tmp, $path) ) {
                     $query = "
                         INSERT INTO tbl_imagen
-                        (cod_imagen,id_user,name_imagen,date_imagen)
+                        (cod_imagen,id_user,name_imagen,date_imagen,type_imagen)
                         VALUES
-                        (nextval('seq_tbl_imagen_cod'),$id_user,'$new_name_imagen',$date_imagen)
+                        (nextval('seq_tbl_imagen_cod'),$id_user,'$new_name_imagen',$date_imagen,'$extension')
                     ";
                     $db->query ( $query );
                 }

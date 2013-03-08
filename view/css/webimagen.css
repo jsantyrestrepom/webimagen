@@ -49,18 +49,42 @@ root {
 
 #gallery {
     margin-top: 5%;
-    text-align: center;
-    border:1px solid;
 }
 
-.img {
-	opacity:0.4;
-	filter:alpha(opacity=40); /* For IE8 and earlier */
+/*	css para cada imagen en galeria	*/
+.wrap-img {
+	margin:10px 10px 10px 10px; 
+  	/*border:1px solid #0000ff;*/
+  	height:200px;
+  	width:200px;
+ 	float:left;
+  	text-align:center;
 }
-.img:hover {
+
+.wrap-img img {
+  	display:inline;
+  	/*margin:3px;*/
+  	border:1px solid #ffffff;
+  	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.wrap-img img:hover {
 	opacity:1.0;
 	filter:alpha(opacity=100); /* For IE8 and earlier */
 }
+
+div.img a:hover img {
+  	border:1px solid #0000ff;
+}
+
+div.desc {
+  	text-align:center;
+  	font-weight:normal;
+  	width:120px;
+  	margin:2px;
+}
+  
 
 footer {
     margin-top: 10%;

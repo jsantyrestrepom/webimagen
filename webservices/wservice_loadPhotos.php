@@ -9,7 +9,7 @@
         $id_user = $_POST['id'];
         $query = "
             SELECT
-                name_imagen
+                name_imagen,type_imagen
             FROM
                 tbl_imagen
             WHERE
@@ -20,13 +20,13 @@
             $totalImg = 0;
             $listImg = "";
             while( $arr_img = $db->fetchArray() ) {
-                $listImg += "{ 'name' : '". $arr_img['name_imagen'] ."' } ,";
+                $listImg .=  "'". $arr_img['name_imagen'] .".". $arr_img['type_imagen'] ."' , ";
                 $totalImg += 1;
-            }//echo $listImg;
-            //$listImg = substr($listImg,0,strlen($listImg)-1);
-            //echo "{ 'total' : '$totalImg' , 'list' : [ $listImg ] }";
+            }
+            $listImg = substr($listImg,0,strlen($listImg)-3);
+            echo "({ 'total' : '$totalImg' , 'list' : [ $listImg ] })"; 
         } else {
-            echo "{ 'total' : '0' }";
+            echo "({ 'total' : '0' })";
         }
     }
 

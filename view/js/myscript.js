@@ -1,22 +1,14 @@
-$(document).onload( function() {
-	$.ajax({
-		type: "POST" ,
-        url: "webservices/wservice_loadPhotos.php?" ,
-        data: $("#username") ,
-        success: function (data) {
-        	$("#gallery_bar").css("width" , "100%");
-        	var obj = eval ( \'(\' + data + \')\' );
-        	$("#gallery").html("");
-        	obj.toString();
-        	$.each() {
-        		
-        	}
-         	// $("#gallery").append(data
-        	//	<a class="thumbnail" href="#">
-        	//	<img src="..." class="img-polaroid">
-        		</a>
-        	//);
-        }
-	});
-            
-});
+$(window).load(function() {
+                var idusr = $("#id_user").val();alert(idusr);
+                $.ajax({
+                    type: "POST" ,
+                    url: "http://localhost:8080/webimagen/webservices/wservice_loadPhotos.php?" ,
+                    data: { id : idusr } ,
+                    success: function (data) {
+                        var obj = eval ( \'(\' + data + \')\' );
+                        $.each(obj.list, function(key , value) {
+                            //wrap value
+                        }); alert(data);
+                    }
+                 });
+            });

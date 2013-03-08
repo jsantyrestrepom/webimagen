@@ -2,8 +2,7 @@
 
 
     require_once ('../model/class/Usuario.php');
-    
-    $usuario = new Usuario();
+
      
     session_start();
     
@@ -21,44 +20,23 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" > </script>
         <script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
         <script type="text/javascript" >
-        $(document).load(function() {
-            alert();
-           var idusr = $("#id_user").val();
-            //$("#gallery").text(idusr);
-            $.ajax({
-                type: "POST" ,
-                url: "http://localhost:8080/webimagen/webservices/wservice_loadPhotos.php?" ,
-                data: { id : idusr } ,
-                success: function (data) {
-                    $("#gallery").html(data);
-                    //var obj = eval ( \'(\' + data + \')\' );                
-                }
-             });
-        });
-        
-        
-        
-        $(document).ready(function(){
-         $("#username").click(function(){
-            var idusr = $("#id_user").val();
-            //$("#gallery").text(idusr);
-            $.ajax({
-                type: "POST" ,
-                url: "http://localhost:8080/webimagen/webservices/wservice_loadPhotos.php?" ,
-                data: { id : idusr } ,
-                success: function (data) {
-                    $("#gallery").html(data);
-                    //var obj = eval ( \'(\' + data + \')\' );                
-                }
-             });
-                        
-               
-                
-    
-    });
-   
-    
-});
+            <!--
+            $(document).ready(function() {
+                var idusr = $("#id_user").val();
+                $.ajax({
+                    type: "POST" ,
+                    url: "http://localhost:8080/webimagen/webservices/wservice_loadPhotos.php?" ,
+                    data: { id : idusr } ,
+                    success: function (data) {
+                        var obj = eval ( \'(\' + data + \')\' );
+                        var usrdirectory = $("#username").text();
+                        $.each(obj.list, function(key , value) {
+                            $("#gallery").append(\'<div class="wrap-img"><a href="../photos/\'+ usrdirectory +\'/\'+ value +\'"><img src="../photos/\'+ usrdirectory +\'/\'+ value +\'" class="img-polaroid" ></a></div>\');
+                        });
+                    }
+                 });
+            });
+            -->
         </script>
     </head>
     
@@ -67,7 +45,7 @@
         <script src="bootstrap/js/bootstrap.min.js" ></script>
         
         <div class="navbar navbar-inverse controls controls-row offset12" >
-        <div class="span" id="username" ><i class="icon-user" ></i>  '. $username .'</div>
+        <div class="span" id="username" ><i class="icon-user" ></i>'. $username .'</div>
         <div class="span" ><form id="logout" method="post" action="../controller/controller.php" >
             <input class="btn btn-mini" type="submit" id="bttn_logout" name="bttn_logout" value="Logout" />
         </form></div>
