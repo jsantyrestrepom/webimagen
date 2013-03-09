@@ -25,7 +25,7 @@
                 var idusr = $("#id_user").val();
                 $.ajax({
                     type: "POST" ,
-                    url: "http://localhost:8080/webimagen/webservices/wservice_loadPhotos.php?" ,
+                    url: "http://sistemas.eafit.edu.co/~jrestr76/webimagen/webservices/wservice_loadPhotos.php?" ,
                     data: { id : idusr } ,
                     success: function (data) {
                         var obj = eval ( \'(\' + data + \')\' );
