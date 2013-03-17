@@ -16,19 +16,23 @@
             session_destroy();
             header ("Location: ../view/login.php");
             exit();
-        } else if ( isset($_POST['bttn_upload']) ) {var_dump($_FILES);
+        } else if ( isset($_POST['bttn_upload']) ) {	//UPLOAD_ERR_INI_SIZE: 1
             if ( ($_FILES['upload_photo']['type'] == "image/gif") || ($_FILES['upload_photo']['type'] == "image/jpeg") || ($_FILES['upload_photo']['type'] == "image/png") || ($_FILES['upload_photo']['type'] == "image/pjpeg") ) {
                 $upload_max_filesize = ini_get('upload_max_filesize');
                 $upload_max_filesize_bytes = return_bytes($upload_max_filesize);
                 if ( $_FILES['upload_photo']['size'] < $upload_max_filesize_bytes ) {       // $upload_max_filesize_bytes: valor maximo de un archivo en bytes, segun configuracion
                     $username = $_SESSION['user']->getNombre();
                     $id_user = $_SESSION['user']->getId();
-                    $tmp = $_FILES['upload_photo']['tmp_name'];
-                    $extension = end(explode(".", $_FILES['upload_photo']['name']));
+                    $tmp = $_FILES['upload_photo']['tmp_name'];// ."/". $_FILES['upload_photo']['name'];
+                    $extension = strtolower( end(explode(".", $_FILES['upload_photo']['name'])) );
                     $date_imagen = time();
                     $new_name_imagen = "img-$date_imagen";
-                    $path = $_SERVER['DOCUMENT_ROOT'] . "/webimagen/photos/$username/$new_name_imagen.$extension";
-                    if( move_uploaded_file($tmp, $path) ) {
+                    //$path = $_SERVER['DOCUMENT_ROOT']/webimagen/imagens/$username/$new_name_imagen.$extension";
+		    //$path = "/home/jrestr76/public_html/webimagen/imagens/$username/$new_name_imagen.$extension";\
+$path = "../imagens/$username/$new_name_imagen.$extension";// echo $_FILES['upload_photo']['name'] . ": $path - $tmp<br />"; echo getcwd() . "\n"; chdir("../imagens"); echo getcwd() . "<br />";
+//$path = getcwd() ."/$username/$new_name_imagen.$extension";
+// echo $path; echo "<br />". $_SERVER["SCRIPT_FILENAME"] ."<br />"; echo dirname($_SERVER["SCRIPT_FILENAME"]); echo $tmp; exit();
+                    if( move_uploaded_file($tmp, $path) ) { //echo $path;
                         $query = "
                             INSERT INTO tbl_imagen
                             (cod_imagen,id_user,name_imagen,date_imagen,type_imagen)
@@ -36,14 +40,14 @@
                             (nextval('seq_tbl_imagen_cod'),$id_user,'$new_name_imagen',$date_imagen,'$extension')
                         ";
                         $db->query ( $query );
-                    }
+                    } else {echo "false";}
                 } else {
                     // foto excede el tamaño
                 }
-            }//exit();
+            }exit();
         }        
         header ("Location: ../view/startPage.php");
-        //exit();    
+        exit();    
 	} else {
 		if ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) ) {
 			$username = $_POST['username'];

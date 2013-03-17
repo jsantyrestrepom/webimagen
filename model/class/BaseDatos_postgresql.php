@@ -7,9 +7,9 @@
 		function BaseDatos() {		//constructor		
 			$server="localhost";
 			$port = 5432;
-			$dbname = "webimagen";
-			$user = "postgres";			
-			$password = "pgroot";
+			$dbname = "postgres"; //"webimagen";
+			$user = "jrestr76";	//"postgres";
+			$password = "Gonzalo25";
 			error_reporting(~E_ALL);
 			if ($conn = pg_connect("host=$server port=$port dbname=$dbname user=$user password=$password")) {
 				error_reporting(E_ALL);
