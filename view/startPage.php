@@ -25,13 +25,13 @@
                 var idusr = $("#id_user").val();
                 $.ajax({
                     type: "POST" ,
-                    url: "http://sistemas.eafit.edu.co/~jrestr76/webimagen/webservices/wservice_loadPhotos.php?" ,
+                    url: "http://sistemas.eafit.edu.co/~jrestr76/reto1/webservices/wservice_loadPhotos.php?" ,
                     data: { id : idusr } ,
                     success: function (data) {
                         var obj = eval ( \'(\' + data + \')\' );
                         var usrdirectory = $("#username").text();
                         $.each(obj.list, function(key , value) {
-                            $("#gallery").append(\'<div class="wrap-img"><a href="../photos/\'+ usrdirectory +\'/\'+ value +\'"><img src="../photos/\'+ usrdirectory +\'/\'+ value +\'" class="img-polaroid" ></a></div>\');
+                            $("#gallery").append(\'<div class="wrap-img"><a href="../imagens/\'+ usrdirectory +\'/\'+ value +\'"><img src="../imagens/\'+ usrdirectory +\'/\'+ value +\'" class="img-polaroid" ></a></div>\');
                         });
                     }
                  });

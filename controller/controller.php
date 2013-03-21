@@ -29,9 +29,8 @@
                     $new_name_imagen = "img-$date_imagen";
                     //$path = $_SERVER['DOCUMENT_ROOT']/webimagen/imagens/$username/$new_name_imagen.$extension";
 		    //$path = "/home/jrestr76/public_html/webimagen/imagens/$username/$new_name_imagen.$extension";\
-$path = "../imagens/$username/$new_name_imagen.$extension";// echo $_FILES['upload_photo']['name'] . ": $path - $tmp<br />"; echo getcwd() . "\n"; chdir("../imagens"); echo getcwd() . "<br />";
-//$path = getcwd() ."/$username/$new_name_imagen.$extension";
-// echo $path; echo "<br />". $_SERVER["SCRIPT_FILENAME"] ."<br />"; echo dirname($_SERVER["SCRIPT_FILENAME"]); echo $tmp; exit();
+                    $path = "../imagens/$username/$new_name_imagen.$extension";
+	            // echo $path; echo "<br />"; exit();
                     if( move_uploaded_file($tmp, $path) ) { //echo $path;
                         $query = "
                             INSERT INTO tbl_imagen
@@ -44,7 +43,7 @@ $path = "../imagens/$username/$new_name_imagen.$extension";// echo $_FILES['uplo
                 } else {
                     // foto excede el tamaño
                 }
-            }exit();
+            }//exit();
         }        
         header ("Location: ../view/startPage.php");
         exit();    
