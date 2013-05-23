@@ -5,7 +5,7 @@
 
      
     session_start();
-    
+    //url: "http://sistemas.eafit.edu.co/~jrestr76/reto1/webservices/wservice_loadPhotos.php?"
     
     $username = $_SESSION['user']->getNombre();
     $id_user = $_SESSION['user']->getId();
@@ -25,7 +25,7 @@
                 var idusr = $("#id_user").val();
                 $.ajax({
                     type: "POST" ,
-                    url: "http://sistemas.eafit.edu.co/~jrestr76/reto1/webservices/wservice_loadPhotos.php?" ,
+                     url: "http://localhost/telematica-reto1/webservices/wservice_loadPhotos.php?",
                     data: { id : idusr } ,
                     success: function (data) {
                         var obj = eval ( \'(\' + data + \')\' );

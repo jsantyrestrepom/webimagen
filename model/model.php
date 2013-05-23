@@ -1,7 +1,8 @@
 <?php
 
 
-    require_once ('class/BaseDatos_postgresql.php');
+    require_once ('../model/class/BaseDatos_mysql.php');
+	//require_once ('../model/class/BaseDatos_postgresql.php');
     require_once ('class/Usuario.php');
     
     $db = new BaseDatos();

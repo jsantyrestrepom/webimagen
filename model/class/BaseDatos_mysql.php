@@ -4,15 +4,15 @@
 		private $result;
 		private $conn;
 		
-		function BaseDatos($database_name) {		//constructor
-			echo "new !";exit();$server="localhost";
+		function BaseDatos() {		//constructor
+			$server="localhost";
 			$port = 3306;
 			$dbname = "jrestr76_reto1"; //"webimagen";
-			$user = "jrestr76";
-			$password = "Gonzalo";
+			$user = "root";
+			$password = "escopolamina";
 			error_reporting(~E_ALL);			
-			if ($conn = mysql_connect($server, $user, $password) {
-				if($use = mysql_select_db($database_name ,$conn)) {
+			if ($conn = mysql_connect($server, $user, $password)) {
+				if($use = mysql_select_db($dbname ,$conn)) {
 					error_reporting(E_ALL);
 				} else {
 					echo '<center><b>Error seleccionando la base de datos</b></center>';
